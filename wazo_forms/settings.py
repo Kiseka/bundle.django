@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'todos',
     'authentication',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    'corsheaders',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -58,7 +60,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', 
 ]
+
+# cors
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 ROOT_URLCONF = 'wazo_forms.urls'
 
@@ -155,7 +162,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=105),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1440),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,

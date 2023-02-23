@@ -18,3 +18,8 @@ class UserValidationSerializer(serializers.Serializer):
     #     if data['password'] != data['password_confirm']:
     #         raise serializers.ValidationError("Passwords don't match")
     #     return data
+class UserResponseSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    email = serializers.EmailField()
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()

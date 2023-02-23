@@ -7,11 +7,13 @@ from rest_framework.views import APIView
 from .models import Todo
 from helpers.response_helpers import api_error_response, api_success_response
 from .serializers import TodoSerializer, TodoStatusSerializer
+import time
 
 # Create your views here.
 class TodoListAPIView(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request, *args, **kwargs):
+        time.sleep(1)
         queryset = Todo.objects.all()
         serializer = TodoSerializer(queryset, many=True)
         return api_success_response(serializer.data)
@@ -19,6 +21,7 @@ class TodoListAPIView(APIView):
 class TodoCreateAPIView(APIView):
     permission_classes = (IsAuthenticated,)
     def post(self, request, *args, **kwargs):
+        time.sleep(1)
         serializer = TodoSerializer(data=request.data)
         serializer.is_valid()
         if serializer.errors:

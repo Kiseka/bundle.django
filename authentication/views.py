@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from authentication.serializers import UserValidationSerializer
+from authentication.serializers import UserResponseSerializer, UserValidationSerializer
 from django.contrib.auth import login, authenticate
 from helpers.response_helpers import api_success_response,api_error_response
 from rest_framework_simplejwt.views import (
@@ -29,4 +29,5 @@ class UserLoginAPIView(APIView):
         return api_success_response({
             'refresh': str(refresh),
             'access': str(refresh.access_token),
+            'user': UserResponseSerializer(user).data
         })
